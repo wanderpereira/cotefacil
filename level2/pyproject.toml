@@ -1,0 +1,37 @@
+# pyproject.toml
+
+[tool.poetry]
+name = "cotefacil-desafio-dev-python"
+version = "1.0.0"
+description = "Desafio Técnico de Desenvolvedor Python: Web Scraping com Scrapy, Filas (Celery) e API de Callback."
+authors = ["Wander Pereira da Silva"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "level2"}] # Ajuste o nome da pasta principal do seu código
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+# --- Dependências para o Nível 1 & 2 (Core) ---
+scrapy = "^2.13"                      # Para o web scraping e autenticação [cite: 16]
+requests = "^2.31"                    # Para as chamadas à API de Callback (Autenticação e POST /produto) [cite: 48]
+python-dotenv = "^1.0"                # Para gerenciar variáveis com .env [cite: 132]
+
+# --- Dependências para o Nível 2 (Filas) ---
+# Usando Celery (o worker) e Redis (o broker/backend) [cite: 55, 46]
+celery = {extras = ["redis"], version = "^5.4"} # Celery com driver para Redis
+redis = "^5.0"                        # Driver Redis
+
+# --- Dependências para o Nível 3 (Futuro) ---
+# FastAPI = "^0.111"                  # Opcional, se precisar de endpoints auxiliares [cite: 117]
+
+[tool.poetry.group.dev.dependencies]
+# --- Dependências para Testes e Debug (Nível 3 Requer Testes) ---
+pytest = "^8.2"                       # Para testes automatizados [cite: 115]
+ipdb = "^0.13"                        # Para debug
+black = "^24.3"                       # Formatação de código
+isort = "^5.13"                       # Ordenação de imports
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
